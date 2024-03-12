@@ -22,7 +22,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('https://idea-clan-backend-r2mh.onrender.com/login', {
+      const response = await fetch('http://localhost:9000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -31,6 +31,9 @@ const Login = () => {
       });
 
       const data = await response.json();
+      console.log("data", data)
+      console.log(data.user.role)
+      localStorage.setItem('Role', data.user.role)
 
       if (!response.ok) {
         setLoading(false);

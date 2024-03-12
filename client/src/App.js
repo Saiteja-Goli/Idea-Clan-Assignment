@@ -8,13 +8,13 @@ import AdminDashboard from './components/AdminDashboard';
 import CourseManagement from './components/CourseManagement';
 import LectureManagement from './components/LectureManagement';
 import UserManagement from './components/UserManagement';
-import { BrowserRouter,Route,Routes,Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 const App = () => {
 
 
   return (
     <div>
-       <BrowserRouter>
+      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

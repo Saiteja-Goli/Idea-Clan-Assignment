@@ -1,25 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-import { Box, Heading, Button, Center, VStack, Text, SimpleGrid, HStack } from '@chakra-ui/react';
+import { Box, Heading, Button, Center, VStack, Text, SimpleGrid, HStack, Spinner } from '@chakra-ui/react';
 import axios from 'axios';
 import Navbar from './Navbar';
 import { jwtDecode } from 'jwt-decode';
 
 const Dashboard = () => {
   const [lectures, setLectures] = useState([]);
+  const [loading, setLoading] = useState(true); // New loading state
 
   const [token, setToken] = useState('');
   const navigation = useNavigate();
-
-
-  const handleCourseSelection = () => {
-    navigation('/course-selection');
-  };
-
-  const handleProfileView = () => {
-    navigation('/profile');
-  };
-
 
   useEffect(() => {
     const checkToken = () => {
@@ -59,26 +50,25 @@ const Dashboard = () => {
     checkToken();
   }, [navigation]);
 
-
-
   useEffect(() => {
     fetchLectures();
   }, []);
 
-  //Fetching All Lectures
   const fetchLectures = async () => {
     try {
       const authToken = localStorage.getItem('authToken');
       console.log("Authorization Token:", authToken);
-      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/lectures', {
+      const response = await axios.get('http://localhost:9000/lectures', {
         headers: {
           Authorization: `Bearer ${authToken}`
         }
       });
       console.log("Response Data:", response.data);
       setLectures(response.data.lectures);
+      setLoading(false); // Set loading to false after fetching data
     } catch (error) {
       console.error('Error fetching lectures:', error.message);
+      setLoading(false); // Set loading to false even if there's an error
     }
   };
 
@@ -101,36 +91,41 @@ const Dashboard = () => {
               Lectures
             </Heading>
           </Center>
-          <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-            {lectures.map((lecture) => (
-              <Box key={lecture._id} p={6} borderWidth="1px" borderRadius="md">
-                <Heading as="h3" size="lg" mb={2}>
-                  {lecture.title}
-                </Heading>
-                <Text fontSize="md" mb={2}>
-                  <Text as="span" fontWeight="bold">Course ID:</Text>
-                  <Text as="span" ml={1}>{lecture.courseId}</Text>
-                </Text>
-                <Text fontSize="md" mb={2}>
-                  <Text as="span" fontWeight="bold">Description:</Text>
-                  <Text as="span" ml={1}>{lecture.description}</Text>
-                </Text>
+          {loading ? ( // Conditionally render loader if loading state is true
+            <Center mt={5}>
+              <Spinner size="xl" />
+            </Center>
+          ) : (
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+              {lectures.map((lecture) => (
+                <Box key={lecture._id} p={6} borderWidth="1px" borderRadius="md">
+                  <Heading as="h3" size="lg" mb={2}>
+                    {lecture.title}
+                  </Heading>
+                  <Text fontSize="md" mb={2}>
+                    <Text as="span" fontWeight="bold">Course ID:</Text>
+                    <Text as="span" ml={1}>{lecture.courseId}</Text>
+                  </Text>
+                  <Text fontSize="md" mb={2}>
+                    <Text as="span" fontWeight="bold">Description:</Text>
+                    <Text as="span" ml={1}>{lecture.description}</Text>
+                  </Text>
 
-                <Text fontSize="md" mb={2}>
-                  <Text as="span" fontWeight="bold">Time:</Text>
-                  <Text as="span" ml={1}>{new Date(lecture.startTime).toLocaleDateString()} at {new Date(lecture.startTime).toLocaleTimeString()} - {new Date(lecture.endTime).toLocaleTimeString()}</Text>
-                </Text>
+                  <Text fontSize="md" mb={2}>
+                    <Text as="span" fontWeight="bold">Time:</Text>
+                    <Text as="span" ml={1}>{new Date(lecture.startTime).toLocaleDateString()} at {new Date(lecture.startTime).toLocaleTimeString()} - {new Date(lecture.endTime).toLocaleTimeString()}</Text>
+                  </Text>
 
-                <Button colorScheme="teal" onClick={() => window.open(lecture.meetingLink, '_blank')} mb={2}>
-                  Join Meeting
-                </Button>
-              </Box>
-            ))}
-          </SimpleGrid>
+                  <Button colorScheme="teal" onClick={() => window.open(lecture.meetingLink, '_blank')} mb={2}>
+                    Join Meeting
+                  </Button>
+                </Box>
+              ))}
+            </SimpleGrid>
+          )}
         </Box>
       </Center>
     </Box>
-
   );
 };
 

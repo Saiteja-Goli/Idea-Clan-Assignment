@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { Box, Heading, Button, VStack, Checkbox } from '@chakra-ui/react';
+import { Box, Heading, Button, VStack, Checkbox, Stack } from '@chakra-ui/react';
 import Navbar from './Navbar';
 
 const CourseSelection = () => {
@@ -21,7 +21,7 @@ const CourseSelection = () => {
     const authToken = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/courses', {
+      const response = await axios.get('http://localhost:9000/courses', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -40,13 +40,12 @@ const CourseSelection = () => {
       setSelectedCourses([...selectedCourses, courseId]);
     }
   };
-
   const handleSubmit = async () => {
     setLoading(true);
     try {
       const authToken = localStorage.getItem('authToken');
       const response = await axios.post(
-        'https://idea-clan-backend-r2mh.onrender.com/select-courses',
+        'http://localhost:9000/select-courses',
         { courses: selectedCourses },
         {
           headers: {
@@ -54,6 +53,7 @@ const CourseSelection = () => {
           },
         }
       );
+  
       console.log('Response:', response.data);
       alert("Courses selected successfully");
       navigation('/dashboard');
@@ -77,7 +77,7 @@ const CourseSelection = () => {
         {courses.length === 0 ? (
           <Heading as="h4" size="md" mt={4}>No courses available</Heading>
         ) : (
-          <VStack mt={4} spacing={2}>
+          <Stack mt={4} spacing={2}>
             {courses.map((course) => (
               <Checkbox
                 key={course._id}
@@ -89,7 +89,7 @@ const CourseSelection = () => {
                 {userInfo && userInfo.selectedCourses.includes(course._id) ? 'Already Selected' : course.name}
               </Checkbox>
             ))}
-          </VStack>
+          </Stack>
         )}
         <Button colorScheme="teal" mt={4} onClick={handleSubmit} disabled={selectedCourses.length !== 3 || loading} borderRadius="md">
           {loading ? 'Submitting...' : 'Submit Selection'}

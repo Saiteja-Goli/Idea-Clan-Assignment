@@ -9,8 +9,6 @@ import {
   VStack,
   FormControl,
   FormLabel,
-  CloseButton,
-  HStack,
   Flex,
   Center,
 } from '@chakra-ui/react';
@@ -31,7 +29,7 @@ const CourseManagement = () => {
   const fetchCourses = async () => {
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/courses', {
+      const response = await axios.get('http://localhost:9000/courses', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -47,7 +45,7 @@ const CourseManagement = () => {
     const authToken = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.post('https://idea-clan-backend-r2mh.onrender.com/courses', formData, {
+      const response = await axios.post('http://localhost:9000/courses', formData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -70,7 +68,7 @@ const CourseManagement = () => {
   const handleDelete = async (courseId) => {
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await axios.delete(`https://idea-clan-backend-r2mh.onrender.com/courses/${courseId}`, {
+      const response = await axios.delete(`http://localhost:9000/courses/${courseId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -120,7 +118,7 @@ const CourseManagement = () => {
         <Flex direction="row" flexWrap="wrap" justify="center">
 
           {courses.map((course) => (
-            <Box key={course._id} borderWidth="1px" borderRadius="md" p={4} m={2} width="30%" boxShadow="md">
+            <Box key={course._id} borderWidth="1px" borderRadius="md" p={4} m={2} width="40%" boxShadow="md">
               <Heading as="h3" size="lg" mb={2}>{course.name}</Heading>
               <Box fontSize="sm" color="gray.600">{course.description}</Box>
               {course.prerequisites && (

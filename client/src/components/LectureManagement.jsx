@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Box, Heading, Input, Button, Textarea, Text, SimpleGrid, HStack, VStack, Center } from '@chakra-ui/react';
 import Navbar from './Navbar';
-import { Link } from 'react-router-dom';
 
 const LectureManagement = () => {
   const [lectures, setLectures] = useState([]);
@@ -40,7 +39,7 @@ const LectureManagement = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       console.log("Authorization Token:", authToken);
-      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/lectures', {
+      const response = await axios.get('http://localhost:9000/lectures', {
         headers: {
           Authorization: `Bearer ${authToken}`
         }
@@ -55,7 +54,7 @@ const LectureManagement = () => {
   //Searching Lecture
   const handleSearchByCourseId = async () => {
     try {
-      const response = await axios.get(`https://idea-clan-backend-r2mh.onrender.com/courses/${searchCourseId}/lectures`, {
+      const response = await axios.get(`http://localhost:9000/courses/${searchCourseId}/lectures`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('authToken')}`
         }
@@ -73,7 +72,7 @@ const LectureManagement = () => {
       console.log("Request Payload:", formData); // Log request payload
       const authToken = localStorage.getItem('authToken');
       const response = await axios.post(
-        `https://idea-clan-backend-r2mh.onrender.com/courses/${formData.courseId}/lectures`,
+        `http://localhost:9000/courses/${formData.courseId}/lectures`,
         formData,
         {
           headers: {
@@ -105,7 +104,7 @@ const LectureManagement = () => {
   const handleDeleteLecture = async (lectureId) => {
     try {
       const authToken = localStorage.getItem('authToken');
-      await axios.delete(`https://idea-clan-backend-r2mh.onrender.com/lectures/${lectureId}`, {
+      await axios.delete(`http://localhost:9000/lectures/${lectureId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`
         }

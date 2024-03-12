@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Box, Center, Heading, Text } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import Navbar from './Navbar';
 
 const Profile = () => {
@@ -11,7 +11,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         const authToken = localStorage.getItem('authToken');
-        const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/profile', {
+        const response = await axios.get('http://localhost:9000/profile', {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },
