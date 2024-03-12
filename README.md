@@ -4,7 +4,7 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
 
 ## Deployed links
   - **Frontend**
-[link](https://idea-clan-frontend-a8qmsqk7l-srinivasgokarla.vercel.app/)
+[link](https://client-b1jrssme7-saiteja-goli.vercel.app/)
 
   - **Backend**
 [link](https://idea-clan-backend-1.onrender.com/)
