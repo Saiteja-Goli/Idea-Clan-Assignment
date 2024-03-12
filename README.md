@@ -2,7 +2,14 @@
 
 EduHub is a comprehensive Learning Management System (LMS) designed to facilitate interactive online learning experiences. The platform connects instructors (admins) and students, offering a range of functionalities to enhance the teaching and learning process.
 
-## Core Functionalities
+## Deployed links
+  - **Frontend**
+[link](https://idea-clan-frontend-a8qmsqk7l-srinivasgokarla.vercel.app/)
+
+  - **Backend**
+[link](https://idea-clan-backend-1.onrender.com/)
+
+## Functionalities
 ### Authentication and Authorization
 
 - **User Registration & Login**: Secure user registration and login processes for students and admins. Authentication mechanisms verify user credentials before granting access.
@@ -45,9 +52,9 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
   - **Request Body:**
     ```json
     {
-      "name": "John Doe",
-      "email": "john@example.com",
-      "password": "password123",
+      "name": "student",
+      "email": "student@example.com",
+      "password": "sai123",
       "role": "student"
     }
     ```
@@ -57,8 +64,8 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
   - **Request Body:**
     ```json
     {
-      "email": "john@example.com",
-      "password": "password123"
+      "email": "student@example.com",
+      "password": "sai123"
     }
     ```
 
@@ -70,7 +77,7 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
   - **Request Body:**
     ```json
     {
-      "name": "Introduction to Programming",
+      "name": "Introduction to ReactJS",
       "description": "A beginner-friendly course on programming fundamentals.",
       "prerequisites": "None"
     }
@@ -81,11 +88,11 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
   - **Request Body:**
     ```json
     {
-      "title": "Variables and Data Types",
-      "startTime": "2024-03-15T10:00:00",
-      "endTime": "2024-03-15T12:00:00",
-      "description": "Understanding basic concepts of variables and data types.",
-      "meetingLink": "https://zoom.us/j/123456789"
+      "title": "Functions ans Objects in Java",
+      "startTime": "2024-02-15T10:00:00",
+      "endTime": "2024-01-15T12:00:00",
+      "description": "Understanding basic concepts Functions.",
+      "meetingLink": "https://zoom.us/j/2039023421"
     }
     ```
 
@@ -100,13 +107,6 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
       "courses": ["courseId1", "courseId2", "courseId3"]
     }
     ```
-
-## Deployed links
-  - **Frontend**
-[link](https://idea-clan-frontend-a8qmsqk7l-srinivasgokarla.vercel.app/)
-
-  - **Backend**
-[link](https://idea-clan-backend.onrender.com)
 
 #### Cloud Deployment
 
