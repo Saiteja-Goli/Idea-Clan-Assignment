@@ -11,6 +11,7 @@ import {
   Link,
   Text,
   VStack,
+  Spinner
 } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -19,11 +20,11 @@ const Signup = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
     username: '',
     password: '',
     role: 'admin',
   });
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const authToken = localStorage.getItem('authToken');
@@ -35,25 +36,25 @@ const Signup = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setLoading(true);
     try {
-      const response = await axios.post('https://idea-clan-backend-ku4x.onrender.com/register', formData);
-
+      const authToken = localStorage.getItem('authToken');
+      const response = await axios.post('https://idea-clan-backend-1.onrender.com/register', formData);
       console.log(response.data);
-      alert('Registration successfully');
+      alert('Registration successful');
       navigation('/');
     } catch (error) {
       if (error.response.status === 400) {
         alert('Email already registered');
       }
-
       console.error('Registration failed:', error.response ? error.response.data : error.message);
+    } finally {
+      setLoading(false);
     }
   };
-
+  
   return (
     <>
       <VStack align="center" mt={8}>
@@ -88,7 +89,12 @@ const Signup = () => {
               <Input type="password" name="password" value={formData.password} onChange={handleChange} placeholder='Enter the Password' required />
             </FormControl>
 
-            <Button type="submit" colorScheme="teal" mt={4}>Register</Button>
+            {loading ? (
+              <Spinner size="md" color="teal" mt={4} />
+            ) : (
+              <Button type="submit" colorScheme="teal" mt={4}>Register</Button>
+            )}
+
             <Text mt={2}>
               If you have an account? <Link href="/" textDecoration='underline'>Login here</Link>.
             </Text>
@@ -98,4 +104,5 @@ const Signup = () => {
     </>
   );
 };
-export default Signup
+
+export default Signup;

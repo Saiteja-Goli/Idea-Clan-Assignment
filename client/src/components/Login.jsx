@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link, VStack } from '@chakra-ui/react';
+import { Box, Heading, FormControl, FormLabel, Input, Button, Text, Link, VStack, Spinner } from '@chakra-ui/react';
 
 const Login = () => {
   const navigation = useNavigate();
@@ -8,13 +8,7 @@ const Login = () => {
     email: '',
     password: '',
   });
-
-  useEffect(() => {
-    const authToken = localStorage.getItem('authToken');
-    if (authToken) {
-      navigation('/dashboard');
-    }
-  }, [navigation]);
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({
@@ -25,9 +19,10 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     try {
-      const response = await fetch('https://idea-clan-backend-ku4x.onrender.com/login', {
+      const response = await fetch('https://idea-clan-backend-1.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -35,21 +30,21 @@ const Login = () => {
         body: JSON.stringify(formData),
       });
 
-      if (!response.ok) {
-        alert('Invalid credentials');
-        throw new Error('Invalid credentials');
-      }
       const data = await response.json();
 
-      const { accessToken } = data;
-      console.log('Received token:', accessToken);
+      if (!response.ok) {
+        setLoading(false);
+        throw new Error(data.message || 'Invalid credentials');
+      }
 
+      const { accessToken } = data;
       localStorage.setItem('authToken', accessToken);
-      alert('Login successfully');
+      alert('Login successful');
       navigation('/dashboard');
     } catch (error) {
-      console.error('Error:', error.message);
-      alert('Invalid credentials');
+      console.error('Login error:', error.message);
+      alert(error.message);
+      setLoading(false);
     }
   };
 
@@ -81,9 +76,13 @@ const Login = () => {
               />
             </FormControl>
 
-            <Button mt={4} colorScheme="teal" type="submit">
-              Login
-            </Button>
+            {loading ? (
+              <Spinner size="md" color="teal" mt={4} />
+            ) : (
+              <Button mt={4} colorScheme="teal" type="submit">
+                Login
+              </Button>
+            )}
 
             <Text mt={4}>
               Don't have an account? <Link href="/signup" textDecoration="underline" colorScheme='blue'>Sign up here</Link>.

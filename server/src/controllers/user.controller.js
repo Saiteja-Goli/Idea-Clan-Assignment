@@ -6,7 +6,7 @@ const secretKey = 'ideaclan1234';
 exports.registerUser = async (req, res) => {
 
   try {
-    const { name, username, email, password, role } = req.body;
+    const { name, username, email,password, role } = req.body;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'User  already registered' });

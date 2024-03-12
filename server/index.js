@@ -18,7 +18,7 @@ app.use(express.json());
 
 // Logging middleware
 app.use((req, res, next) => {
-  console.log("Method:", req.method, req.url);
+  // console.log("Method:", req.method, req.url);
   next();
 });
 
@@ -29,11 +29,11 @@ mongoose.connect(process.env.MONGODB_URL)
 
 // Routes
 app.get("/", (req, res) => {
-  res.send("WELCOME TO SERVER");
+  res.send("WELCOME TO SERVER......");
 });
 
 // Applying verifyToken middleware to routes that require authentication
-app.use(verifyToken);
+// app.use(verifyToken);
 app.use('/', authRoutes);
 app.use('/', courseRoutes);
 app.use('/', lectureRoutes);
