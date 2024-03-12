@@ -21,6 +21,14 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
 - **Lecture Management**: Schedule lectures for courses, providing details like title, timing, description, and meeting link.
 - **Analytics and Insights**: Dashboard displaying key metrics like total students, courses, and lectures.
 
+- **Login Admin - Credentials**
+    ```bash
+    {
+      "email": "admin@gmail.com",
+      "password": "sai123"
+    }
+    ```
+
 ### Student Side
 
 - **Course Selection**: Students select three courses upon registration, tailoring their learning journey to their interests.
@@ -53,7 +61,7 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
     ```json
     {
       "name": "admin",
-      "email": "admin@example.com",
+      "email": "admin@gmail.com",
       "password": "sai123",
       "role": "admin"
     }
@@ -64,7 +72,7 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
   - **Request Body:**
     ```json
     {
-      "email": "admin@example.com",
+      "email": "admin@gmail.com",
       "password": "sai123"
     }
     ```
