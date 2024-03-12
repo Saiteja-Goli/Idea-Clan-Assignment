@@ -31,7 +31,7 @@ const CourseManagement = () => {
   const fetchCourses = async () => {
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await axios.get('https://idea-clan-backend-1.onrender.com/courses', {
+      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/courses', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -47,7 +47,7 @@ const CourseManagement = () => {
     const authToken = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.post('https://idea-clan-backend-1.onrender.com/courses', formData, {
+      const response = await axios.post('https://idea-clan-backend-r2mh.onrender.com/courses', formData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -70,7 +70,7 @@ const CourseManagement = () => {
   const handleDelete = async (courseId) => {
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await axios.delete(`https://idea-clan-backend-1.onrender.com/courses/${courseId}`, {
+      const response = await axios.delete(`https://idea-clan-backend-r2mh.onrender.com/courses/${courseId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -96,7 +96,7 @@ const CourseManagement = () => {
     <Box>
       <Navbar />
       <VStack align="center" mt={8}>
-        <Heading as="h2" size="xl">Course Management</Heading>
+        <Heading as="h2" size="xl">Course Management-[Only Admin]</Heading>
         <Box boxShadow={"lg"} width="25%" p='20px' borderRadius={'20px'}>
           <form onSubmit={handleSubmit} w="50%">
             <FormControl>

@@ -41,7 +41,7 @@ const Signup = () => {
     setLoading(true);
     try {
       const authToken = localStorage.getItem('authToken');
-      const response = await axios.post('https://idea-clan-backend-1.onrender.com/register', formData);
+      const response = await axios.post('https://idea-clan-backend-r2mh.onrender.com/register', formData);
       console.log(response.data);
       alert('Registration successful');
       navigation('/');
@@ -54,7 +54,7 @@ const Signup = () => {
       setLoading(false);
     }
   };
-  
+
   return (
     <>
       <VStack align="center" mt={8}>

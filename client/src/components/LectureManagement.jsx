@@ -40,7 +40,7 @@ const LectureManagement = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       console.log("Authorization Token:", authToken);
-      const response = await axios.get('https://idea-clan-backend-1.onrender.com/lectures', {
+      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/lectures', {
         headers: {
           Authorization: `Bearer ${authToken}`
         }
@@ -55,7 +55,7 @@ const LectureManagement = () => {
   //Searching Lecture
   const handleSearchByCourseId = async () => {
     try {
-      const response = await axios.get(`https://idea-clan-backend-1.onrender.com/courses/${searchCourseId}/lectures`, {
+      const response = await axios.get(`https://idea-clan-backend-r2mh.onrender.com/courses/${searchCourseId}/lectures`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('authToken')}`
         }
@@ -73,7 +73,7 @@ const LectureManagement = () => {
       console.log("Request Payload:", formData); // Log request payload
       const authToken = localStorage.getItem('authToken');
       const response = await axios.post(
-        `https://idea-clan-backend-1.onrender.com/courses/${formData.courseId}/lectures`,
+        `https://idea-clan-backend-r2mh.onrender.com/courses/${formData.courseId}/lectures`,
         formData,
         {
           headers: {
@@ -105,7 +105,7 @@ const LectureManagement = () => {
   const handleDeleteLecture = async (lectureId) => {
     try {
       const authToken = localStorage.getItem('authToken');
-      await axios.delete(`https://idea-clan-backend-1.onrender.com/lectures/${lectureId}`, {
+      await axios.delete(`https://idea-clan-backend-r2mh.onrender.com/lectures/${lectureId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`
         }
@@ -123,21 +123,7 @@ const LectureManagement = () => {
     <Box>
       <Navbar />
       <VStack align="center" mt={8}>
-        <Heading as="h2" size="xl">Create Lecture</Heading>
-
-        <SimpleGrid columns={2} spacing={4} mt={-10} w="80%">
-          {filteredLectures.map((lecture) => (
-            <Box key={lecture._id} p={4} borderWidth="1px" borderRadius="md">
-              <Heading as="h3" size="md">{lecture.title}</Heading>
-              <Text>Course ID: {lecture.courseId}</Text>
-              <Text>Start Time: {new Date(lecture.startTime).toLocaleString()}</Text>
-              <Text>End Time: {new Date(lecture.endTime).toLocaleString()}</Text>
-              <Text>Description: {lecture.description}</Text>
-              <Text>Meeting Link: <a href={lecture.meetingLink}>{lecture.meetingLink}</a></Text>
-              <Center mt='10px'>{userRole === 'admin' && <Button onClick={() => handleDeleteLecture(lecture._id)}>Delete</Button>}</Center>
-            </Box>
-          ))}
-        </SimpleGrid>
+        <Heading as="h2" size="xl">Create Lecture -[Only Admin]</Heading>
 
         <Box className="form-Box" mt={8} w="50%" boxShadow={'lg'} p="20px 20px" borderRadius={'20px'}>
           <form onSubmit={handleSubmit}>
@@ -200,7 +186,21 @@ const LectureManagement = () => {
             w="100%"
           />
           <Button onClick={handleSearchByCourseId} colorScheme="teal" mt={4}>Search</Button>
+
         </HStack>
+        <SimpleGrid columns={2} spacing={4} mt={10} w="80%">
+          {filteredLectures.map((lecture) => (
+            <Box key={lecture._id} p={4} borderWidth="1px" borderRadius="md">
+              <Heading as="h3" size="md">{lecture.title}</Heading>
+              <Text>Course ID: {lecture.courseId}</Text>
+              <Text>Start Time: {new Date(lecture.startTime).toLocaleString()}</Text>
+              <Text>End Time: {new Date(lecture.endTime).toLocaleString()}</Text>
+              <Text>Description: {lecture.description}</Text>
+              <Text>Meeting Link: <a href={lecture.meetingLink}>{lecture.meetingLink}</a></Text>
+              <Center mt='10px'>{userRole === 'admin' && <Button onClick={() => handleDeleteLecture(lecture._id)}>Delete</Button>}</Center>
+            </Box>
+          ))}
+        </SimpleGrid>
         <SimpleGrid columns={{ base: 1, md: 2 }} spacing={4} mt={4} w="80%">
           {lectures.map((lecture) => (
             <Box key={lecture._id} p={4} borderWidth="1px" borderRadius="md">   <Heading as="h3" size="lg" mb={2}>

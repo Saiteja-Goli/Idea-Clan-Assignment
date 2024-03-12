@@ -11,7 +11,7 @@ const Profile = () => {
     const fetchUserData = async () => {
       try {
         const authToken = localStorage.getItem('authToken');
-        const response = await axios.get('https://idea-clan-backend-1.onrender.com/profile', {
+        const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/profile', {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },

@@ -70,7 +70,7 @@ const Dashboard = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       console.log("Authorization Token:", authToken);
-      const response = await axios.get('https://idea-clan-backend-1.onrender.com/lectures', {
+      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/lectures', {
         headers: {
           Authorization: `Bearer ${authToken}`
         }

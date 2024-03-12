@@ -21,7 +21,7 @@ const CourseSelection = () => {
     const authToken = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.get('https://idea-clan-backend-1.onrender.com/courses', {
+      const response = await axios.get('https://idea-clan-backend-r2mh.onrender.com/courses', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -46,7 +46,7 @@ const CourseSelection = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       const response = await axios.post(
-        'https://idea-clan-backend-1.onrender.com/select-courses',
+        'https://idea-clan-backend-r2mh.onrender.com/select-courses',
         { courses: selectedCourses },
         {
           headers: {
@@ -56,7 +56,7 @@ const CourseSelection = () => {
       );
       console.log('Response:', response.data);
       alert("Courses selected successfully");
-      navigation('/lectures');
+      navigation('/dashboard');
     } catch (error) {
       console.error('Error selecting courses:', error);
       if (error.response) {

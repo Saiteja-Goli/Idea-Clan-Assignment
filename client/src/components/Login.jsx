@@ -22,7 +22,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('https://idea-clan-backend-1.onrender.com/login', {
+      const response = await fetch('https://idea-clan-backend-r2mh.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +36,6 @@ const Login = () => {
         setLoading(false);
         throw new Error(data.message || 'Invalid credentials');
       }
-
       const { accessToken } = data;
       localStorage.setItem('authToken', accessToken);
       alert('Login successful');
