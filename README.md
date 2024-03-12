@@ -46,7 +46,30 @@ EduHub is a comprehensive Learning Management System (LMS) designed to facilitat
 
 ### Authentication
 
-- **Register User**
+- **Register Admin**
+  - **URL:** `/register`
+  - **Method:** POST
+  - **Request Body:**
+    ```json
+    {
+      "name": "admin",
+      "email": "admin@example.com",
+      "password": "sai123",
+      "role": "admin"
+    }
+    ```
+- **Login Admin**
+  - **URL:** `/login`
+  - **Method:** POST
+  - **Request Body:**
+    ```json
+    {
+      "email": "admin@example.com",
+      "password": "sai123"
+    }
+    ```
+
+- **Register Student**
   - **URL:** `/register`
   - **Method:** POST
   - **Request Body:**
