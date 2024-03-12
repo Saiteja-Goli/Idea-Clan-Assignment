@@ -41,7 +41,7 @@ const Signup = () => {
     setLoading(true);
     try {
       const authToken = localStorage.getItem('authToken');
-      const response = await axios.post('http://localhost:9000/register', formData);
+      const response = await axios.post('https://idea-clan-backend-bhh0.onrender.com/register', formData);
       console.log(response.data);
       alert('Registration successful');
       navigation('/');

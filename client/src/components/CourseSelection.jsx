@@ -21,7 +21,7 @@ const CourseSelection = () => {
     const authToken = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.get('http://localhost:9000/courses', {
+      const response = await axios.get('https://idea-clan-backend-bhh0.onrender.com/courses', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -45,7 +45,7 @@ const CourseSelection = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       const response = await axios.post(
-        'http://localhost:9000/select-courses',
+        'https://idea-clan-backend-bhh0.onrender.com/select-courses',
         { courses: selectedCourses },
         {
           headers: {
@@ -53,7 +53,7 @@ const CourseSelection = () => {
           },
         }
       );
-  
+
       console.log('Response:', response.data);
       alert("Courses selected successfully");
       navigation('/dashboard');

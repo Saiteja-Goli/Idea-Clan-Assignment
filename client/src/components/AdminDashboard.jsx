@@ -16,7 +16,7 @@ const AdminDashboard = () => {
 
     const fetchAnalytics = async () => {
       try {
-        const response = await axios.get('http://localhost:9000/analytics', {
+        const response = await axios.get('https://idea-clan-backend-bhh0.onrender.com/analytics', {
           headers: {
             Authorization: `Bearer ${authToken}`,
           },

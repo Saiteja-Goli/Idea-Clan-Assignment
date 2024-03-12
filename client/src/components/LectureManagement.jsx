@@ -39,7 +39,7 @@ const LectureManagement = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       console.log("Authorization Token:", authToken);
-      const response = await axios.get('http://localhost:9000/lectures', {
+      const response = await axios.get('https://idea-clan-backend-bhh0.onrender.com/lectures', {
         headers: {
           Authorization: `Bearer ${authToken}`
         }
@@ -54,7 +54,7 @@ const LectureManagement = () => {
   //Searching Lecture
   const handleSearchByCourseId = async () => {
     try {
-      const response = await axios.get(`http://localhost:9000/courses/${searchCourseId}/lectures`, {
+      const response = await axios.get(`https://idea-clan-backend-bhh0.onrender.com/courses/${searchCourseId}/lectures`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('authToken')}`
         }
@@ -72,7 +72,7 @@ const LectureManagement = () => {
       console.log("Request Payload:", formData); // Log request payload
       const authToken = localStorage.getItem('authToken');
       const response = await axios.post(
-        `http://localhost:9000/courses/${formData.courseId}/lectures`,
+        `https://idea-clan-backend-bhh0.onrender.com/courses/${formData.courseId}/lectures`,
         formData,
         {
           headers: {
@@ -104,7 +104,7 @@ const LectureManagement = () => {
   const handleDeleteLecture = async (lectureId) => {
     try {
       const authToken = localStorage.getItem('authToken');
-      await axios.delete(`http://localhost:9000/lectures/${lectureId}`, {
+      await axios.delete(`https://idea-clan-backend-bhh0.onrender.com/lectures/${lectureId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`
         }

@@ -58,7 +58,7 @@ const Dashboard = () => {
     try {
       const authToken = localStorage.getItem('authToken');
       console.log("Authorization Token:", authToken);
-      const response = await axios.get('http://localhost:9000/lectures', {
+      const response = await axios.get('https://idea-clan-backend-bhh0.onrender.com/lectures', {
         headers: {
           Authorization: `Bearer ${authToken}`
         }

@@ -29,7 +29,7 @@ const CourseManagement = () => {
   const fetchCourses = async () => {
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await axios.get('http://localhost:9000/courses', {
+      const response = await axios.get('https://idea-clan-backend-bhh0.onrender.com/courses', {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -45,7 +45,7 @@ const CourseManagement = () => {
     const authToken = localStorage.getItem('authToken');
 
     try {
-      const response = await axios.post('http://localhost:9000/courses', formData, {
+      const response = await axios.post('https://idea-clan-backend-bhh0.onrender.com/courses', formData, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },
@@ -68,7 +68,7 @@ const CourseManagement = () => {
   const handleDelete = async (courseId) => {
     const authToken = localStorage.getItem('authToken');
     try {
-      const response = await axios.delete(`http://localhost:9000/courses/${courseId}`, {
+      const response = await axios.delete(`https://idea-clan-backend-bhh0.onrender.com/courses/${courseId}`, {
         headers: {
           Authorization: `Bearer ${authToken}`,
         },

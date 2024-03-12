@@ -22,7 +22,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:9000/login', {
+      const response = await fetch('https://idea-clan-backend-bhh0.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
